@@ -1,0 +1,39 @@
+PROBLEM:  Circular LinkedList: 1->5->7
+          Output:
+          1 5
+          7
+
+          Circular LinkedList: 2->6->1->5
+          Output:
+          2 6
+          1 5
+          
+          
+SOLUTION:
+
+void splitList(Node *head, Node **head1_ref, Node **head2_ref)
+{
+    
+    Node *slow = head, *fast=head;
+    
+    while(fast->next!=head && fast->next->next!=head){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    *head1_ref=head;
+    *head2_ref=slow->next;
+    
+    slow->next=head;
+    
+    Node* pnt2= *head2_ref;
+    while(pnt2->next!=head){
+        pnt2=pnt2->next;
+    }
+    pnt2->next=*head2_ref;
+}
+
+
+
+
+
+
